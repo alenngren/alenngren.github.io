@@ -18,7 +18,7 @@
     "href": "posts/linalg-numpy/SEE125_Assignment3_SysLinEq_Group37.html",
     "title": "Instructions",
     "section": "",
-    "text": "---\ntitle: New Post\ndate: 2023-07-12\ndescription: A nice new post\ncategories: [nonsense, code]\n---\nA note on group work:\nWe recommend that each group member attempts the solution to each exercise on their own at first, and then discusses it with the other member. Experience shows that in this way groups get more ideas for solutions and eventually write better code. Choose to work in a way that ensures each group member is able to solve each task on their own in the end."
+    "text": "---\ntitle: \"New Post\"\ndate: \"2025-02-06\"\nauthor: \"Alexander\"\ndescription: \"A nice new post\"\ncategories: [nonsense, code]\n---\nA note on group work:\nWe recommend that each group member attempts the solution to each exercise on their own at first, and then discusses it with the other member. Experience shows that in this way groups get more ideas for solutions and eventually write better code. Choose to work in a way that ensures each group member is able to solve each task on their own in the end."
   },
   {
     "objectID": "posts/linalg-numpy/SEE125_Assignment3_SysLinEq_Group37.html#exercise-0-matrix-manipulations-with-numpy",
