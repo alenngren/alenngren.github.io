@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Instructions – Alexander’s (very technical) blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Alexander’s (very technical) blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/alenngren"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter-x" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Instructions</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div id="e64d0c91-ed2b-402c-8d0c-2dc93d3e4b06" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>title: New Post</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>date: <span class="dv">2023</span><span class="op">-</span><span class="dv">0</span><span class="er">7</span><span class="op">-</span><span class="dv">12</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>description: A nice new post</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>categories: [nonsense, code]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="0" type="1">
+<li>This is a group assignment. Only 1 submission per group is needed.</li>
+<li>Rename the notebook so that XXX is replaced with your group’s number.</li>
+<li>Read through all the exercises first to get an idea of what each is asking for.</li>
+<li>Write your solutions in each cell that says <code># your code here</code>.</li>
+<li><strong>Before submitting, restart the kernel and click <code>Run all cells</code>. Make sure there are no error messages.</strong></li>
+<li>To pass the assignment, your submission should have correct working solutions to all tasks and answers to any reflection questions. If you run into trouble, ask for help.</li>
+<li>Submit your notebook as a .ipynb file on the Canvas assignment page.</li>
+<li>Read the feedback you receive on the assignment on Canvas by the teaching team (available usually one week after the submission deadline).</li>
+<li>If your assignment is graded as incomplete, then you should address any corrections required as explained in the feedback, and re-submit by attaching the new notebook as a reply to the feedback.</li>
+</ol>
+<p>A note on group work:</p>
+<p>We recommend that each group member attempts the solution to each exercise on their own at first, and then discusses it with the other member. Experience shows that in this way groups get more ideas for solutions and eventually write better code. Choose to work in a way that ensures each group member is able to solve each task on their own in the end.</p>
+<section id="assignment-learning-objectives" class="level1">
+<h1>Assignment learning objectives</h1>
+<ul>
+<li>Exercise 0: demonstrate correct use of matrix operations using numpy.</li>
+<li>Exercise 1: interpret the condition number for solving a system of linear equations.</li>
+<li>Exercise 2: apply different numerical methods and check the reliability of the solution.</li>
+<li>Exercise 3: apply linear algebra concepts to scientific problems.</li>
+</ul>
+<section id="exercise-0-matrix-manipulations-with-numpy" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-0-matrix-manipulations-with-numpy">Exercise 0: Matrix manipulations with numpy</h2>
+<p>Consider the following matrices:</p>
+$ A =
+<span class="math display">\[\begin{pmatrix}
+1 &amp; 2 &amp; 3\\
+4 &amp; 5 &amp; 6\\
+7 &amp; 8 &amp; 9
+\end{pmatrix}\]</span>
+$ , $ B =
+<span class="math display">\[\begin{pmatrix}
+11 &amp; 12 &amp; 13\\
+14 &amp; 15 &amp; 16\\
+17 &amp; 18 &amp; 19
+\end{pmatrix}\]</span>
+$ and $ C =
+<span class="math display">\[\begin{pmatrix}
+1 &amp; 2\\
+3 &amp; 4\\
+5 &amp; 6
+\end{pmatrix}\]</span>
+<p>$</p>
+<section id="task-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-1">Task 1</h3>
+<p>Use numpy and the above matrices to: - perform one matrix addition - perform one element-wise matrix multiplication - perform one matrix multiplication - concatenate the matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> along their columns and print the result. The resulting matrix’s dimension should be <span class="math inline">\(3\times5\)</span>. - for each operation, print the resulting matrix dimension using the <code>.shape</code> method.</p>
+</section>
+<section id="task-2" class="level3">
+<h3 class="anchored" data-anchor-id="task-2">Task 2</h3>
+<ul>
+<li>Explain the requirements on the matrix dimensions for the three types of operations performed in task 1.</li>
+</ul>
+<div id="b31eb37d" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.arange(<span class="dv">1</span>,<span class="dv">10</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>A.resize((<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.arange(<span class="dv">11</span>,<span class="dv">20</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>B.resize((<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.arange(<span class="dv">1</span>,<span class="dv">7</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>C.resize((<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A = '</span>, A,<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>,<span class="st">'B = '</span>,  B)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'C ='</span>, C)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'--- operations ---'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'+'</span>, A<span class="op">+</span>B, <span class="st">'shape='</span>,(A<span class="op">+</span>B).shape)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dot'</span>, np.dot(A,B), <span class="st">'shape='</span>, (np.dot(A,B)).shape)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matmul'</span>, A<span class="op">@</span>B, <span class="st">'shape='</span>, (A<span class="op">@</span>B).shape)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'concat'</span>, np.concatenate((A,C), axis<span class="op">=</span><span class="dv">1</span>), <span class="st">'shape='</span>, np.concatenate((A,C), axis<span class="op">=</span><span class="dv">1</span>).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A =  [[1 2 3]
+ [4 5 6]
+ [7 8 9]] 
+ B =  [[11 12 13]
+ [14 15 16]
+ [17 18 19]]
+C = [[1 2]
+ [3 4]
+ [5 6]]
+--- operations ---
++ [[12 14 16]
+ [18 20 22]
+ [24 26 28]] shape= (3, 3)
+dot [[ 90  96 102]
+ [216 231 246]
+ [342 366 390]] shape= (3, 3)
+matmul [[ 90  96 102]
+ [216 231 246]
+ [342 366 390]] shape= (3, 3)
+concat [[1 2 3 1 2]
+ [4 5 6 3 4]
+ [7 8 9 5 6]] shape= (3, 5)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-1-condition-number" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-condition-number">Exercise 1: Condition number</h2>
+<p>In this exercise you will explore the sensitivity of a solution of a linear system of equations to numerical errors.</p>
+<p>Consider the matrices:</p>
+$ A =
+<span class="math display">\[\begin{pmatrix}
+0.8647 &amp; 0.5766\\
+0.4322 &amp; 0.2822
+\end{pmatrix}\]</span>
+<p>$</p>
+<p>and</p>
+$ M =
+<span class="math display">\[\begin{pmatrix}
+8.5 &amp; 1.5\\
+1.8 &amp; 3.1
+\end{pmatrix}\]</span>
+<p>$</p>
+<section id="task-1." class="level3">
+<h3 class="anchored" data-anchor-id="task-1.">Task 1.</h3>
+<p>Write a python function that computes the <em>condition number</em> of a matrix, as defined in the lecture on systems of linear equations. Recall the definition of the condition number for a matrix <span class="math inline">\(A\)</span> as: <span class="math inline">\(\|A\|  \|A^{-1}\|\)</span>. For a square matrix of dimension <span class="math inline">\(n\)</span>, we have <span class="math inline">\(\|A\| = \sqrt{\sum_{1\le i, j \le n} A_{ij}^2}\)</span> (the square root of the sum of the square of each element).</p>
+<p>In your implementation of the python function: - Use <code>np.linalg.norm</code> or write a custom function for calculating the norm of a matrix. - Use <code>numpy.linalg.inv</code> for inverting the matrix.</p>
+<p>Apply your function to the matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(M\)</span> and print out the result.</p>
+</section>
+<section id="task-2." class="level3">
+<h3 class="anchored" data-anchor-id="task-2.">Task 2.</h3>
+<p>Write a python function that adds a small perturbation to the element in the first row and first column of a matrix.</p>
+<p>Apply your function to the matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(M\)</span> using a perturbation of <span class="math inline">\(p=0.0001\)</span>, creating new (perturbed) matrices <span class="math inline">\(A'\)</span> and <span class="math inline">\(M'\)</span>.</p>
+</section>
+<section id="task-3." class="level3">
+<h3 class="anchored" data-anchor-id="task-3.">Task 3.</h3>
+Consider the vector $ b =
+<span class="math display">\[\begin{pmatrix}
+0.2885 \\
+0.1442
+\end{pmatrix}\]</span>
+<p>$.</p>
+<p>Use <code>numpy.linalg.solve</code> to solve the systems: - <span class="math inline">\(Ax = b\)</span> - <span class="math inline">\(A'x = b\)</span> - <span class="math inline">\(Mx = b\)</span> - <span class="math inline">\(M'x=b\)</span></p>
+<p>where <span class="math inline">\(x\)</span> is an unknown vector.</p>
+</section>
+<section id="task-4." class="level3">
+<h3 class="anchored" data-anchor-id="task-4.">Task 4.</h3>
+<ul>
+<li><p>Measure in any way you like the difference between the solutions for <span class="math inline">\(x\)</span> you found in the first two cases of task 3, and the difference between the solutions found for the last two cases of task 3.</p></li>
+<li><p>Explain why these results could be expected based on the condition number.</p></li>
+</ul>
+<div id="4ed25501" class="cell" data-tags="[]" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1 </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    [[<span class="fl">0.8647</span>, <span class="fl">0.5766</span>], </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.4322</span>, <span class="fl">0.2822</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">8.5</span>, <span class="fl">1.5</span>],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.8</span>, <span class="fl">3.1</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>np_conumber <span class="op">=</span> np.linalg.norm(A)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>mat_conumber<span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(np.power(A.reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dv">2</span>)))  <span class="co"># messy but accurate</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>nopy_conumber <span class="op">=</span> np.<span class="bu">sum</span>(A.reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span>  <span class="co"># same result less convulated</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># print(np_conumber - mat_conumber)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># print(nopy_conumber - np_conumber)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cond_number(A):</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Conditional number for matrix A</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">        A (np.array like): _description_</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.array(A)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    norm <span class="op">=</span> np.linalg.norm(A)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    inv_A <span class="op">=</span> np.linalg.norm(np.linalg.inv(A))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> norm<span class="op">*</span>inv_A, norm<span class="op">*</span>inv_A <span class="op">-</span> np.linalg.cond(A)  <span class="co"># second term error</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Task 1 A:'</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'our cond'</span>, cond_number(A)[<span class="dv">0</span>])</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'np cond</span><span class="ch">\t</span><span class="st">'</span>, np.linalg.cond(A))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'diff: </span><span class="ch">\t</span><span class="st">'</span>, cond_number(A)[<span class="dv">1</span>])</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'M:'</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'our cond'</span>, cond_number(M)[<span class="dv">0</span>])</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'np cond</span><span class="ch">\t</span><span class="st">'</span>, np.linalg.cond(M))</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'diff: </span><span class="ch">\t</span><span class="st">'</span>, cond_number(M)[<span class="dv">1</span>])</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 2 </span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> perturb_first(A):</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""perturbs the first element with p = 0.0001</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">        A (np.array like): _description_</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="fl">0.0001</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> A.copy()  <span class="co"># design choice, otherwise destructive for matrix A (read next comment)</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    B[<span class="dv">0</span>,<span class="dv">0</span>] <span class="op">+=</span> p</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> A.copy()  <span class="co"># important to copy, otherwise stores the reference</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>Ap <span class="op">=</span> perturb_first(A) </span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>Mp <span class="op">=</span> perturb_first(M)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Task 2: First Ap - A, second Mp - M "</span>)</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Ap <span class="op">-</span> A)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Mp <span class="op">-</span> M)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3 </span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.2885</span>],</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.1442</span>]</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Task 3: solve for x'</span>)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x0 = '</span>, np.linalg.solve(A,b).reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, np.linalg.solve(Ap,b).reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, np.linalg.solve(M,b).reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x3 = '</span>, np.linalg.solve(Mp,b).reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 4 </span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Task 4'</span>)</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>Axdiff <span class="op">=</span> np.linalg.solve(A,b) <span class="op">-</span> np.linalg.solve(Ap,b)</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>Mxdiff <span class="op">=</span> np.linalg.solve(M,b) <span class="op">-</span> np.linalg.solve(Mp, b)</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x diff A-Ap'</span>, Axdiff.reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>), cond_number(A)[<span class="dv">0</span>])  <span class="co"># greater than for M </span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x diff M-Mp'</span>, Mxdiff.reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>), cond_number(M)[<span class="dv">0</span>])  <span class="co"># very low</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>magnitudediff <span class="op">=</span> np.linalg.norm(Axdiff)<span class="op">/</span>np.linalg.norm(Mxdiff)  <span class="co"># factor difference right way?</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The difference in magnitude of norm(A-Ap)/norm(M-Mp): '</span>, magnitudediff)</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The difference in magnitude of cond(A)/cond(M): '</span>, cond_number(A)[<span class="dv">0</span>]<span class="op">/</span>cond_number(M)[<span class="dv">0</span>])</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Seems like weird comparison, point is cond(A) &gt;&gt; cond(M), which infer that higher conditional number will change more with pertubations.'</span>)</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Task 1 A:
+our cond 259.55293185664556
+np cond  259.5490790207813
+diff:    0.0038528358642793137
+
+M:
+our cond 3.6934460887949254
+np cond  3.399264832147035
+diff:    0.2941812566478905
+
+Task 2: First Ap - A, second Mp - M 
+[[1.e-04 0.e+00]
+ [0.e+00 0.e+00]]
+[[1.e-04 0.e+00]
+ [0.e+00 0.e+00]]
+
+Task 3: solve for x
+x0 =  [[ 3.33646867e-01 -7.70983274e-06]]
+x1 =  [[ 0.33547159 -0.00280235]]
+x2 =  [[0.02867019 0.02986892]]
+x3 =  [[0.02866981 0.02986914]]
+
+Task 4
+x diff A-Ap [[-0.00182473  0.00279464]] 259.55293185664556
+x diff M-Mp [[ 3.75798837e-07 -2.18205776e-07]] 3.6934460887949254
+The difference in magnitude of norm(A-Ap)/norm(M-Mp):  7680.508529633639
+The difference in magnitude of cond(A)/cond(M):  70.2739191575234
+Seems like weird comparison, point is cond(A) &gt;&gt; cond(M), which infer that higher conditional number will change more with pertubations.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-2-matrix-inversion-using-lu-decomposition" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-matrix-inversion-using-lu-decomposition">Exercise 2: Matrix inversion using LU decomposition</h2>
+<p>This exercise guides you to create a python function for matrix inversion based on the LU decomposition method introduced in the lectures. You will test your function on the matrix:</p>
+$ A =
+<span class="math display">\[\begin{pmatrix}
+2 &amp; 1 &amp; 1\\
+1 &amp; 1 &amp; -2\\
+1 &amp; 2 &amp; 1
+\end{pmatrix}\]</span>
+<p>$.</p>
+<section id="task-1-add-functions-to-a-module" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-add-functions-to-a-module">Task 1: Add functions to a module</h3>
+<ul>
+<li>From sections 4.3.1 and 4.3.3 of the book <em>Numerical Methods in Physics with Python</em> find python functions for:
+<ul>
+<li>forward substitution</li>
+<li>backward substitution</li>
+<li>LU decomposition</li>
+<li>solving <span class="math inline">\(A x = b\)</span> via LU decomposition</li>
+</ul></li>
+<li>Copy-paste these functions into a new module named <code>linalg.py</code>.</li>
+<li>Add a docstring to each of the functions in your module.</li>
+<li>Check that the functions import correctly here.</li>
+</ul>
+<p><strong>Hint</strong>: There are electronic versions of the book that you can access via the Chalmers library.</p>
+</section>
+<section id="task-2-show-with-a-coding-example-that-a-matrix-can-be-inverted-using-lu-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-show-with-a-coding-example-that-a-matrix-can-be-inverted-using-lu-decomposition">Task 2: Show with a coding example that a matrix can be inverted using LU decomposition</h3>
+<p>Background:</p>
+<p>Recall that <span class="math inline">\(AA^{-1} = I\)</span>, where <span class="math inline">\(I\)</span> is the identity matrix. Let <span class="math inline">\(x_i\)</span> and <span class="math inline">\(e_i\)</span> be the column-vectors of <span class="math inline">\(A^{-1}\)</span> and <span class="math inline">\(I\)</span>, respectively. Assume that the dimension of <span class="math inline">\(A\)</span> is <span class="math inline">\(n\)</span> x <span class="math inline">\(n\)</span>. Then:</p>
+<p><span class="math inline">\(A^{-1} = \begin{pmatrix} x_0 &amp; x_1 &amp; ... &amp; x_i &amp; ... &amp; x_{n-1}\end{pmatrix}\)</span> and <span class="math inline">\(I = \begin{pmatrix} e_0 &amp; e_1 &amp; ... &amp; e_i &amp; ... &amp; e_{n-1}\end{pmatrix}\)</span></p>
+<p>Thus, inverting <span class="math inline">\(A\)</span> means to solve equation <span class="math inline">\(Ax_i = e_i\)</span>, i.e.&nbsp;find <span class="math inline">\(x_i\)</span>.</p>
+<p>Since <span class="math inline">\(A = LU\)</span>, you can rewrite <span class="math inline">\(Ax_i = e_i\)</span> as <span class="math inline">\(L(Ux_i) = e_i\)</span>.</p>
+<p>Implementation: - Create a python function that inverts a matrix via LU decomposition. - Use functions from task 1 to LU decompose the matrix A, namely to find <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> such as <span class="math inline">\(A = LU\)</span>. - Compare your inverted matrix with the inverted matrix returned by the numpy function <code>numpy.linalg.inv</code> and show that they closely agree.</p>
+<p><strong>Hint</strong>: you need to solve <span class="math inline">\(Ly_i = e_i\)</span>. Once <span class="math inline">\(y_i\)</span> is known, then proceed with solving <span class="math inline">\(Ux_i = y_i\)</span> and build <span class="math inline">\(A^{-1}\)</span>.</p>
+</section>
+<section id="task-3-a-different-check" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-a-different-check">Task 3: A different check</h3>
+<ul>
+<li>Propose and implement another way to show that your inversion works (think about the equation satisfied by an inverse matrix).</li>
+</ul>
+<div id="bc88567e" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> linalg, numpy <span class="im">as</span> np </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> A[<span class="dv">0</span>,:].copy()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># linalg.forward_sub(A, A[0,:])</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>L, U <span class="op">=</span> linalg.ludecomp(A)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(linalg.lusolve(A, b), np.linalg.solve(A, b), <span class="st">'ok lusolve, task 1'</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linalg.solve(L,b)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linalg.solve(U,y)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># print(x,y)  # my lusolve is not right &gt;&gt; now it works ()</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 2 </span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> luinv(A):</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> np.eye(A[<span class="dv">0</span>].size)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    L, U <span class="op">=</span> linalg.ludecomp(A)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    Ainv <span class="op">=</span> np.zeros((A[<span class="dv">0</span>].size,A[<span class="dv">0</span>].size))</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(I[<span class="dv">0</span>].size):</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        yi <span class="op">=</span> linalg.forward_sub(L,I[i])</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        xi <span class="op">=</span> linalg.backward_sub(U,yi)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        Ainv[:,i] <span class="op">=</span> xi</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Ainv</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>Ainv <span class="op">=</span> luinv(A)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Ainv)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.linalg.inv(A)<span class="op">-</span> Ainv)  <span class="co"># identical on my machine</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3 Alternative verification</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>np.linalg.det(Ainv)<span class="op">*</span>np.linalg.det(A)  <span class="co"># = 1 per definition, thus works det(Ainv) = 1 / det(A), definition </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1. 0. 0.] [ 1.  0. -0.] ok lusolve, task 1
+[[ 0.625  0.125 -0.375]
+ [-0.375  0.125  0.625]
+ [ 0.125 -0.375  0.125]]
+[[0. 0. 0.]
+ [0. 0. 0.]
+ [0. 0. 0.]]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>1.0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-3-laser-tracking-equipment" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-laser-tracking-equipment">Exercise 3: Laser tracking equipment</h2>
+<p>A room is equipped with two lasers that aim at tracking the position of a person walking in it. Each laser follows the person. The equipment setup returns the equation of the ray of each laser (the line that connects the laser to the person). The laser rays move only in a plane parallel to the floor of the room (the distance from the floor is irrelevant).</p>
+<p>We are interested in the position of the person, that is, the position where the two lasers intersect. At first, the two lasers are rather close to each other (just 10 cm apart).</p>
+<section id="task-1.-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-1.-1">Task 1.</h3>
+<p>You are given the following starter code that creates a figure representing the room as seen from above, and the positions of the two laser rays.</p>
+<p>As explained, the two lasers follow the person in the room, so the person is at the intersection of the two rays.</p>
+<ul>
+<li>Write the system of linear equations that needs to be solved to compute the coordinates of the intersection (= the position of the person tracked).</li>
+<li>Then use <code>np.linalg.solve</code> to get the person’s coordinates and print them out.</li>
+<li>On the same figure, add a black dot where the person is located and complete the legend.</li>
+</ul>
+<div id="73f4c7fa" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x axis</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>step <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">10</span><span class="op">+</span>step,step)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasers sources positions:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>s1x, s1y <span class="op">=</span> <span class="fl">2.</span>, <span class="dv">0</span> <span class="co"># laser_1</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>s2xa, s2ya <span class="op">=</span> <span class="fl">1.9</span>, <span class="dv">0</span> <span class="co"># laser_2 position a</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Equation for each laser</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>a1, b1 <span class="op">=</span> <span class="fl">1.</span>, <span class="op">-</span><span class="dv">2</span>  <span class="co"># laser_1</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>a2a, b2a <span class="op">=</span> <span class="dv">4</span><span class="op">/</span><span class="fl">4.1</span>, <span class="dv">4</span><span class="op">-</span><span class="dv">24</span><span class="op">/</span><span class="fl">4.1</span>  <span class="co"># laser_2</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> a1<span class="op">*</span>x <span class="op">+</span>b1</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>y2a <span class="op">=</span> a2a<span class="op">*</span>x <span class="op">+</span> b2a</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure of the room with each laser position and their rays toward the person being tracked</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># The room is 10x10 m sides and seen from above. </span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># The position (0,0) is the lower left corner of the room</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>ax.plot(s1x, s1y, <span class="st">'r*'</span>, label<span class="op">=</span><span class="st">'Laser source 1'</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>ax.plot(s2xa, s2ya, <span class="st">'b*'</span>, label<span class="op">=</span><span class="st">'Laser source 2a'</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the rays from each laser source</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y1,<span class="st">'r'</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y2a,<span class="st">'b'</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (m)'</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (m)'</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">10</span>])</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">10</span>])</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Sensors configuration a'</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co">#### YOUR CODE HERE</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1 </span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    [a1, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    [a2a, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span>b1, <span class="op">-</span>b2a]</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>isect <span class="op">=</span> np.linalg.solve(A,b.T)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>plt.plot(isect[<span class="dv">0</span>], isect[<span class="dv">1</span>], marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'intersection'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SEE125_Assignment3_SysLinEq_Group37_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2.-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-2.-1">Task 2.</h3>
+<p>Like any real sensor, some measurement uncertainties will leak into the laser equation. - To mimic these uncertainties, let’s apply a small perturbation p = 0.001 on the two slope coefficients: <span class="math inline">\(a1 + p\)</span> and <span class="math inline">\(a2a - p\)</span> and solve the system again. - Compute the distance between the position in task 1 and the one found here. - Could you have expected this sensitivity to uncertainties? Justify quantitatively (with numbers). - Explain intuitively why this occurs.</p>
+<div id="4a12d32d" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Ap <span class="op">=</span> A.copy()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Ap[<span class="dv">0</span>,<span class="dv">0</span>] <span class="op">=</span> a1 <span class="op">+</span> p </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Ap[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">=</span> a2a <span class="op">-</span> p </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>isect2 <span class="op">=</span> np.linalg.solve(A,b.T)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(isect.T, isect2.T)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Distance to pertubation: </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(isect <span class="op">-</span> isect2)<span class="sc">:.4f}</span><span class="ss"> m'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The conditional number is quite high for A, so sensitivity is not surprising. Did get lower for new pertubed matrix'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cond(A):'</span>, cond_number(A)[<span class="dv">0</span>], cond_number(Ap)[<span class="dv">0</span>])</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Inuitively we have two laser close to each other targeting same point a distance relatively far way. Thus changes to slope affect the intersection.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[6. 4.]] [[6. 4.]]
+Distance to pertubation: 0.0000 m
+The conditional number is quite high for A, so sensitivity is not surprising. Did get lower for new pertubed matrix
+cond(A): 162.024390243903 149.74720170416236
+Inuitively we have two laser close to each other targeting same point a distance relatively far way. Thus changes to slope affect the intersection.</code></pre>
+</div>
+</div>
+</section>
+<section id="task-3.-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-3.-1">Task 3.</h3>
+<p>Above we saw what it practically means to have an ill-conditioned problem. A bad setting in a physical system leads to numerical issues.</p>
+<p>One solution is to move one of the lasers. We will move the second laser source further away along the same wall. It’s new position is now: <span class="math inline">\(x, y = 8, 0\)</span>. The laser source 1 stays at the same place as before.</p>
+<ul>
+<li>Make a figure of the new configuration and laser rays.</li>
+<li>Compute and print the person’s position</li>
+<li>Apply the same perturbation p = 0.001 on the two slope coefficients: <span class="math inline">\(a1 + p\)</span> and <span class="math inline">\(a2b - p\)</span> and solve the system again. Do you have a more robust system, why? (give numbers)</li>
+<li>On the same figure, add a black dot where the person is located and complete the legend.</li>
+</ul>
+<div id="df8fe3cd" class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x axis</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>step <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">10</span><span class="op">+</span>step,step)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Lasers sources positions:</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>s1x, s1y <span class="op">=</span> <span class="fl">2.</span>, <span class="dv">0</span> <span class="co"># laser_1</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>s2xa, s2ya <span class="op">=</span> <span class="dv">8</span>, <span class="dv">0</span> <span class="co"># laser_2 position a</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Equation for each laser</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>a1, b1 <span class="op">=</span> <span class="fl">1.</span>, <span class="op">-</span><span class="dv">2</span>  <span class="co"># laser_1</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>a2a, b2a <span class="op">=</span> <span class="op">-</span><span class="dv">3</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">12</span>  <span class="co"># laser_2</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> a1<span class="op">*</span>x <span class="op">+</span>b1</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>y2a <span class="op">=</span> a2a<span class="op">*</span>x <span class="op">+</span> b2a</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure of the room with each laser position and their rays toward the person being tracked</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># The room is 10x10 m sides and seen from above. </span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The position (0,0) is the lower left corner of the room</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>ax.plot(s1x, s1y, <span class="st">'r*'</span>, label<span class="op">=</span><span class="st">'Laser source 1'</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>ax.plot(s2xa, s2ya, <span class="st">'b*'</span>, label<span class="op">=</span><span class="st">'Laser source 2a'</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the rays from each laser source</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y1,<span class="st">'r'</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y2a,<span class="st">'b'</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (m)'</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (m)'</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">10</span>])</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">10</span>])</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Sensors configuration a'</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="co">#### YOUR CODE HERE</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1 </span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    [a1, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    [a2a, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span>b1, <span class="op">-</span>b2a]</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>isect <span class="op">=</span> np.linalg.solve(A,b.T)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>plt.plot(isect[<span class="dv">0</span>], isect[<span class="dv">1</span>], marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'intersection*'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>Ap <span class="op">=</span> A.copy()</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>Ap[<span class="dv">0</span>,<span class="dv">0</span>] <span class="op">=</span> a1 <span class="op">+</span> p </span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>Ap[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">=</span> a2a <span class="op">-</span> p </span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>isect2 <span class="op">=</span> np.linalg.solve(A,b.T)</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'intersection before/after perturbed:'</span>, isect.T, isect2.T)</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Distance to pertubation: </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(isect <span class="op">-</span> isect2)<span class="sc">:.4f}</span><span class="ss"> m'</span>)  <span class="co"># already see much moer stable </span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cond(A):'</span>, cond_number(A)[<span class="dv">0</span>])</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Just by moving the laser we get more stable experiment and are not peturbed! :) '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SEE125_Assignment3_SysLinEq_Group37_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>intersection before/after perturbed: [[5.6 3.6]] [[5.6 3.6]]
+Distance to pertubation: 0.0000 m
+cond(A): 2.1
+Just by moving the laser we get more stable experiment and are not peturbed! :) </code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
