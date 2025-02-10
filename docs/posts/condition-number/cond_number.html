@@ -238,7 +238,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="conditional-number-for-linear-systems">Conditional Number for Linear Systems</h2>
 <p>Consider solving the system: Ax = b Suppose we perturb A by a small <span class="math inline">\(\delta A\)</span>, leading to a new system: $(A + A)x = b $ * How does the small pertubatin in A affect the solution x?</p>
 <p>$ (A + A)(x + X) = b$&nbsp; … || deltax || &lt;= A^-1 deltaA (x+deltax) &lt;= ||A-1|| ||deltaA|| ||x+deltax||</p>
-<p>=&gt; <span class="math inline">\(||\delta x|| / ||x + \delta x|| \leq K(A) ||\delta A||/ ||A||\)</span></p>
+<p><span class="math inline">\(\implies ||\delta x|| / ||x + \delta x|| \leq K(A) ||\delta A||/ ||A||\)</span></p>
 <p>(A + deltaA)(x + deltaX) = b + deltab Ax + Adeltax + deltaAx + deltaAdeltax = b + deltab // Ax = b // Adeltax + deltaAx = deltab =&gt; deltax = A^-1 deltab - A^-1 deltaAx</p>
 <p>||deltax|| ||A-1deltab|| + ||A-1 deltaAx|| ||A-1|| ||A-1|| ||deltaA|| ||x|</p>
 <p>$ ||x||/||x|| K(A) (||b||/b + ||A||/||A||$&nbsp;</p>
@@ -252,7 +252,7 @@ window.Quarto = {
 </div>
 </div>
 <p>There are different kind of norms - Maximum absolute column sum, <span class="math inline">\(||A||_1\)</span> - largest singular value of A, <span class="math inline">\(||A||_2\)</span> - absolute row sum, <span class="math inline">\(||A||_\infty\)</span></p>
-<p><span class="math inline">\(||A||_\inf \leq ||A||_2 \leq ||A||_1\)</span></p>
+<p><span class="math inline">\(||A||_\infty \leq ||A||_2 \leq ||A||_1\)</span></p>
 <div id="d8d91c5f-f24e-4fdf-b1aa-ee6d25d4d182" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.rand(<span class="dv">3</span>,<span class="dv">3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -269,10 +269,10 @@ window.Quarto = {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cond_num, cond_num_svd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.04239495 0.94532698 0.08278209]
- [0.22071741 0.81813576 0.03364866]
- [0.79231125 0.41526776 0.03252222]]
-48.61477657648295 48.614776576482974</code></pre>
+<pre><code>[[0.2903555  0.17404781 0.36225059]
+ [0.63229854 0.072977   0.27374563]
+ [0.55822596 0.56560546 0.98929663]]
+105.47011517470942 105.47011517470911</code></pre>
 </div>
 </div>
 </section>
@@ -295,6 +295,124 @@ window.Quarto = {
 <li>LU-method? <span class="math inline">\(\sigma (n^2)\)</span> &lt;- better</li>
 </ul></li>
 </ul>
+<section id="pivoting-in-gaussion-elimination" class="level3">
+<h3 class="anchored" data-anchor-id="pivoting-in-gaussion-elimination">Pivoting in Gaussion Elimination</h3>
+<ul>
+<li>Consider the system: <span class="math display">\[ A = \left[\begin{array}{ccc}
+2 &amp; 1 &amp; 1\\
+2 &amp; 1 &amp; -4 \\
+1 &amp; 2 &amp; 1 \end{array}\right], \quad
+b = \left[\begin{array}{c}
+8 \\
+-2\\
+2\end{array}\right]\]</span></li>
+</ul>
+<div id="de80abd8-4895-413b-974c-785258678ba1" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>], [<span class="dv">2</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">4</span>], [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>]])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">8</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>gauss <span class="op">=</span> np.linalg.solve(A,b)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>kg <span class="op">=</span> np.linalg.cond(A)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gauss, kg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 4. -2.  2.] 4.649257934123069</code></pre>
+</div>
+</div>
+<div id="9fe378bd-bea8-48ff-9105-fdc6f01bab25" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> linalg <span class="im">import</span>  backward_sub <span class="im">as</span> backsub</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>], [<span class="dv">2</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">4</span>], [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>]])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">8</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauelim_pivot(inA, inbs):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.copy(inA).astype(<span class="bu">float</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    bs <span class="op">=</span> np.copy(inbs).astype(<span class="bu">float</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> bs.size</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> np.argmax(np.<span class="bu">abs</span>(A[j:,j]))<span class="op">+</span>j</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> k<span class="op">!=</span>j:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            temp<span class="op">=</span>A[j,:].copy()</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            A[j,:] <span class="op">=</span> A[k,:]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            A[k,:] <span class="op">=</span> temp</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">+</span><span class="dv">1</span>,n):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            coeff <span class="op">=</span> A[i,j]<span class="op">/</span>A[j,j]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            A[i,j:] <span class="op">-=</span> coeff<span class="op">*</span>A[j,j:]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            bs[i] <span class="op">-=</span> coeff<span class="op">*</span>bs[j]</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> backsub(A,bs)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xs </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauelim_pivot_scaled(inA, inbs):</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.copy(inA).astype(<span class="bu">float</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    bs <span class="op">=</span> np.copy(inbs).astype(<span class="bu">float</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> bs.size</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(A[:,:<span class="op">-</span><span class="dv">1</span>]),axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        scaled_values<span class="op">=</span>np.<span class="bu">abs</span>(A[j:,j])<span class="op">/</span>s[j:]</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> np.argmax(scaled_values)<span class="op">+</span>j</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># k = np.argmax(np.abs(A[j:,j]))+j</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> k<span class="op">!=</span>j:</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            temp<span class="op">=</span>A[j,:].copy()</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>            A[j,:] <span class="op">=</span> A[k,:]</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>            A[k,:] <span class="op">=</span> temp</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            s[j], s[k] <span class="op">=</span> s[k], s[j]</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">+</span><span class="dv">1</span>,n):</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>            coeff <span class="op">=</span> A[i,j]<span class="op">/</span>A[j,j]</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>            A[i,j:] <span class="op">-=</span> coeff<span class="op">*</span>A[j,j:]</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            bs[i] <span class="op">-=</span> coeff<span class="op">*</span>bs[j]</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> backsub(A,bs)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xs </span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gauelim_pivot_scaled(A,b)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 7.2 -6.8  0.4]</code></pre>
+</div>
+</div>
+<p>If do Gaussian Elimination have to reorder rows to fit the Triangular Shape. Else will give fail.</p>
+<p><span class="math display">\[ \left[\begin{array}{ccc|c}
+2 &amp; 1 &amp; 1 &amp; 8\\
+0 &amp; 0 &amp; 5 &amp; -2 \\
+0 &amp; 2 &amp; 1 &amp; 2 \end{array}\right] \rightarrow
+\left[\begin{array}{ccc|c}
+2 &amp; 1 &amp; 1 &amp; 8\\
+0 &amp; 2 &amp; 1 &amp; 2 \\
+0 &amp; 0 &amp; 5 &amp; -2 \end{array}\right]
+\]</span></p>
+</section>
+</section>
+<section id="partial-pivoting" class="level2">
+<h2 class="anchored" data-anchor-id="partial-pivoting">Partial Pivoting</h2>
+<ul>
+<li><p>Now consider this system: A = [], b = []</p></li>
+<li><p>Scale the elements based on the <strong>largest relative magnitude</strong>: <span class="math display">\[|A_{ij}|/s_k = |A_{ji}|/s_k \]</span></p></li>
+</ul>
+<div id="cd7216d4-27de-412b-8bfc-af24af547bc7" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>), <span class="op">-</span><span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">1</span>]])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>), <span class="op">-</span><span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span><span class="op">+</span><span class="dv">10</span><span class="op">**</span>(<span class="dv">20</span>)]])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span><span class="op">-</span><span class="dv">10</span><span class="op">**</span>(<span class="dv">20</span>)])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># -&gt; Approx rounding</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>), <span class="op">-</span><span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">10</span><span class="op">**</span>(<span class="dv">20</span>)]])</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="op">-</span><span class="dv">10</span><span class="op">**</span>(<span class="dv">20</span>)])</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># -&gt; partial pivoting (since first element small)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>), <span class="op">-</span><span class="dv">1</span>],[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>),<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>)]])</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span><span class="op">*</span><span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>)])</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># -&gt; beyond partial pivoting </span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>), <span class="op">-</span><span class="dv">1</span>],[<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>),<span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>)]])</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span><span class="op">*</span><span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">20</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
