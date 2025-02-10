@@ -8,9 +8,9 @@
 
 <meta name="author" content="Alexander">
 <meta name="dcterms.date" content="2025-02-06">
-<meta name="description" content="A nice new post">
+<meta name="description" content="Condition number, LU decomposition, Applied">
 
-<title>New Post – Alexander’s (very technical) blog</title>
+<title>Linalg concepts for Scientific Problems – Alexander’s (very technical) blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -199,14 +199,14 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">New Post</h1>
+      <h1 class="title">Linalg concepts for Scientific Problems</h1>
                   <div>
         <div class="description">
-          A nice new post
+          Condition number, LU decomposition, Applied
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">nonsense</div>
+                <div class="quarto-category">math</div>
                 <div class="quarto-category">code</div>
               </div>
                   </div>
@@ -300,6 +300,8 @@ $ and $ C =
 <li>Explain the requirements on the matrix dimensions for the three types of operations performed in task 1.</li>
 </ul>
 <div id="b31eb37d" class="cell" data-execution_count="83">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.arange(<span class="dv">1</span>,<span class="dv">10</span>)</span>
@@ -319,6 +321,7 @@ $ and $ C =
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dot'</span>, np.dot(A,B), <span class="st">'shape='</span>, (np.dot(A,B)).shape)</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matmul'</span>, A<span class="op">@</span>B, <span class="st">'shape='</span>, (A<span class="op">@</span>B).shape)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'concat'</span>, np.concatenate((A,C), axis<span class="op">=</span><span class="dv">1</span>), <span class="st">'shape='</span>, np.concatenate((A,C), axis<span class="op">=</span><span class="dv">1</span>).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>A =  [[1 2 3]
  [4 5 6]
@@ -392,6 +395,8 @@ Consider the vector $ b =
 <li><p>Explain why these results could be expected based on the condition number.</p></li>
 </ul>
 <div id="4ed25501" class="cell" data-tags="[]" data-execution_count="84">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1 </span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
@@ -484,6 +489,7 @@ Consider the vector $ b =
 <span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Task 1 A:
 our cond 259.55293185664556
@@ -559,6 +565,8 @@ $ A =
 <li>Propose and implement another way to show that your inversion works (think about the equation satisfied by an inverse matrix).</li>
 </ul>
 <div id="bc88567e" class="cell" data-execution_count="53">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> linalg, numpy <span class="im">as</span> np </span>
@@ -598,6 +606,7 @@ $ A =
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3 Alternative verification</span></span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>np.linalg.det(Ainv)<span class="op">*</span>np.linalg.det(A)  <span class="co"># = 1 per definition, thus works det(Ainv) = 1 / det(A), definition </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1. 0. 0.] [ 1.  0. -0.] ok lusolve, task 1
 [[ 0.625  0.125 -0.375]
@@ -627,6 +636,8 @@ $ A =
 <li>On the same figure, add a black dot where the person is located and complete the legend.</li>
 </ul>
 <div id="73f4c7fa" class="cell" data-execution_count="86">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -682,6 +693,7 @@ $ A =
 <span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
 <span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -695,6 +707,8 @@ $ A =
 <h3 class="anchored" data-anchor-id="task-2.-1">Task 2.</h3>
 <p>Like any real sensor, some measurement uncertainties will leak into the laser equation. - To mimic these uncertainties, let’s apply a small perturbation p = 0.001 on the two slope coefficients: <span class="math inline">\(a1 + p\)</span> and <span class="math inline">\(a2a - p\)</span> and solve the system again. - Compute the distance between the position in task 1 and the one found here. - Could you have expected this sensitivity to uncertainties? Justify quantitatively (with numbers). - Explain intuitively why this occurs.</p>
 <div id="4a12d32d" class="cell" data-execution_count="97">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.001</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -710,6 +724,7 @@ $ A =
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The conditional number is quite high for A, so sensitivity is not surprising. Did get lower for new pertubed matrix'</span>)</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cond(A):'</span>, cond_number(A)[<span class="dv">0</span>], cond_number(Ap)[<span class="dv">0</span>])</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Inuitively we have two laser close to each other targeting same point a distance relatively far way. Thus changes to slope affect the intersection.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[6. 4.]] [[6. 4.]]
 Distance to pertubation: 0.0000 m
@@ -730,6 +745,8 @@ Inuitively we have two laser close to each other targeting same point a distance
 <li>On the same figure, add a black dot where the person is located and complete the legend.</li>
 </ul>
 <div id="df8fe3cd" class="cell" data-execution_count="108">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -799,6 +816,7 @@ Inuitively we have two laser close to each other targeting same point a distance
 <span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Distance to pertubation: </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(isect <span class="op">-</span> isect2)<span class="sc">:.4f}</span><span class="ss"> m'</span>)  <span class="co"># already see much moer stable </span></span>
 <span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cond(A):'</span>, cond_number(A)[<span class="dv">0</span>])</span>
 <span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Just by moving the laser we get more stable experiment and are not peturbed! :) '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
